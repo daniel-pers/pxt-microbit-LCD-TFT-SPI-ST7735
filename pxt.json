@@ -1,0 +1,14 @@
+{
+    "name": "TFTLCD",
+    "version": "1.0.0",
+    "description": "TFT LCD液晶micro:bit pxt扩展包",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "README.md",
+        "main.ts",
+    ],
+    "public": true
+}
