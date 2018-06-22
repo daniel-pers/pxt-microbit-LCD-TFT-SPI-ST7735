@@ -17,65 +17,65 @@
 // Only the commands actually used are included here. See the ST7735R
 // data sheet for the full set of commands.
 enum TftCom {
-    //% block="NOOP" NOOP
+    //% block="NOOP"
     NOOP = 0x00,
 
-    //% block="SWRESET" Software Reset
+    //% block="SWRESET"
     SWRESET = 0x01,
 
-    //% block="SLPOUT" Sleep Out
+    //% block="SLPOUT"
     SLPOUT = 0x11,
 
-    //% block="NORON" Normal Display Mode On (no parameters)
+    //% block="NORON"
     NORON = 0x13,
 
-    //% block="INVOFF" Display Inversion Off (0)
+    //% block="INVOFF"
     INVOFF = 0x20,
 
-    //% block="DISPON" Display On (no parameters)
+    //% block="DISPON"
     DISPON = 0x29,
 
-    //% block="CASET" Column Address Set
+    //% block="CASET"
     CASET = 0x2A,
 
-    //% block="RASET" Row Address Set
+    //% block="RASET"
     RASET = 0x2B,
 
-    //% block="RAMWR" Memory Write
+    //% block="RAMWR"
     RAMWR = 0x2C,
 
-    //% block="MADCTL" Memory Data Access Control (1)
+    //% block="MADCTL"
     MADCTL = 0x36,
 
-    //% block="COLMOD" Interface Pixel Format (1)
+    //% block="COLMOD"
     COLMOD = 0x3A,
-    //% block="GMCTRP1" Gamma (+polarity) Corr’n Characteristics Setting (16)
+    //% block="GMCTRP1"
 
-    //% block="FRMCTR1" Frame Rate Control (in normal mode / full colours) (3)
+    //% block="FRMCTR1"
     FRMCTR1 = 0xB1,
-    //% block="FRMCTR2" Frame Rate Control (in idle mode / 8 colours) (3)
+    //% block="FRMCTR2"
     FRMCTR2 = 0xB2,
-    //% block="FRMCTR3" Frame Rate Control (In Partial mode/ full colours) (3)
+    //% block="FRMCTR3"
     FRMCTR3 = 0xB3,
 
-    //% block="INVCTR" Display Inversion Control (1)
+    //% block="INVCTR"
     INVCTR = 0xB4,
-    //% block="PWCTR1" Power Control 1 (3)
+    //% block="PWCTR1"
 
     PWCTR1 = 0xC0,
-    //% block="PWCTR2" Power Control 2 (1)
+    //% block="PWCTR2"
     PWCTR2 = 0xC1,
-    //% block="PWCTR3" Power Control 3 (2)
+    //% block="PWCTR3"
     PWCTR3 = 0xC2,
-    //% block="PWCTR4" Power Control 4 (2)
+    //% block="PWCTR4"
     PWCTR4 = 0xC3,
-    //% block="PWCTR5" Power Control 5 (2)
+    //% block="PWCTR5"
     PWCTR5 = 0xC4,
-    //% block="VMCTR1" VCOM Control 1 (VCOM voltage setting) (1)
+    //% block="VMCTR1"
     VMCTR1 = 0xC5,
 
     GMCTRP1 = 0xE0,
-    //% block="GMCTRN1" Gamma (-polarity) Corr’n Characteristics Setting (16)
+    //% block="GMCTRN1"
     GMCTRN1 = 0xE1,
 
     //% block="DELAY"
