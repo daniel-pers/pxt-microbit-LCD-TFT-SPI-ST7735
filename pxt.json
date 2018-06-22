@@ -8,7 +8,7 @@
     },
     "files": [
         "README.md",
-        "main.ts",
+        "main.ts"
     ],
     "public": true
 }
