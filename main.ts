@@ -90,7 +90,7 @@ enum TftCom {
  *
  *
  */
-//% weight=100 color=#0fbc11
+//% weight=100 color=#0fbc11 icon="\uf108" block="TFT LCD液晶"
 namespace TFTDisplay {
     let screen_x = 0
     let screen_y = 0
@@ -126,7 +126,7 @@ namespace TFTDisplay {
     /**
      * Draw a single pixel of a given colour
      */
-    //% block="drawPixel"
+    //% block="drawPixel |on x:%x|y:%y|colour:%colour"
     //% weight=98
     export function drawPixel(x: number, y: number, colour: number) {
         if (outOfBounds(x, y)) {
@@ -157,7 +157,7 @@ namespace TFTDisplay {
     /**
      * Draw a line of a given colour
      */
-    //% block="drawLine"
+    //% block="drawLine |on x0:%x0|y0:%y0|x1:%x1|y1:%y1|colour:%colour"
     //% weight=97
     export function drawLine(x0: number, y0: number, x1: number, y1: number, colour: number) {
         let xDelta = x1 - x0
@@ -212,7 +212,7 @@ namespace TFTDisplay {
     /**
      * Fill a rectangle with a given colour
      */
-    //% block="fillRect"
+    //% block="fillRect |on x:%x|y:%y|width:%width|height:%height|colour:%colour"
     //% weight=96
     export function fillRect(x: number, y: number, width: number, height: number, colour: number) {
 
@@ -291,7 +291,7 @@ namespace TFTDisplay {
     /**
      * Setup and clear screen ready for used
      */
-    //% block="setupScreen"
+    //% block="setupScreen |on x:%x|y:%y"
     //% weight=99
     export function setupScreen(x: number = 128, y: number = 160) {
         screen_x = x
