@@ -95,7 +95,6 @@ namespace TFTDisplay {
     let screen_x = 0
     let screen_y = 0
 
-    //% block
     function displayScale(): number {
         return 1
     }
@@ -103,7 +102,6 @@ namespace TFTDisplay {
     /*
      * The display width in ‘working coordinates’. These are pixel values * displayScale()
      */
-    //% block
     function displayWidth(): number {
         return screen_x * displayScale()
     }
@@ -111,7 +109,6 @@ namespace TFTDisplay {
     /**
      * The display height in ‘working coordinates’. These are pixel values * displayScale()
      */
-    //% block
     function displayHeight(): number {
         return screen_y * displayScale()
     }
@@ -120,7 +117,6 @@ namespace TFTDisplay {
      * Convert a working coordinate to an actual pixel coordinate.
      * Don’t expose this in final code. It should be internal.
      */
-    //% block
     function roundedPixel(value: number): number {
         let adjusted = value / displayScale();
         adjusted = adjusted + (value & (displayScale() - 1) ? 1 : 0)
@@ -130,7 +126,7 @@ namespace TFTDisplay {
     /**
      * Draw a single pixel of a given colour
      */
-    //% block
+    //% block="drawPixel"
     //% weight=98
     export function drawPixel(x: number, y: number, colour: number) {
         if (outOfBounds(x, y)) {
@@ -161,7 +157,7 @@ namespace TFTDisplay {
     /**
      * Draw a line of a given colour
      */
-    //% block
+    //% block="drawLine"
     //% weight=97
     export function drawLine(x0: number, y0: number, x1: number, y1: number, colour: number) {
         let xDelta = x1 - x0
@@ -198,7 +194,6 @@ namespace TFTDisplay {
     /**
      * Set the address window
      */
-    //% block
     function setAddrWindow(x0: number, y0: number, x1: number, y1: number) {
 
         if (outOfBounds(x0, y0, x1, y1)) {
@@ -217,7 +212,7 @@ namespace TFTDisplay {
     /**
      * Fill a rectangle with a given colour
      */
-    //%block
+    //% block="fillRect"
     //% weight=96
     export function fillRect(x: number, y: number, width: number, height: number, colour: number) {
 
@@ -260,7 +255,6 @@ namespace TFTDisplay {
     /**
      * Write a command to the TFT display
      */
-    //% block
     function tftCom(command: TftCom, params: Array<number>) {
 
         // handle the pseudo ‘DELAY’ command - provides a delay in milliseconds
@@ -297,7 +291,7 @@ namespace TFTDisplay {
     /**
      * Setup and clear screen ready for used
      */
-    //% block
+    //% block="setupScreen"
     //% weight=99
     export function setupScreen(x: number = 128, y: number = 160) {
         screen_x = x
@@ -318,7 +312,7 @@ namespace TFTDisplay {
 	/**
      * Clear screen
      */
-    //% block
+    //% block="clearScreen"
     //% weight=95
     export function clearScreen() {
         fillRect(
@@ -333,7 +327,6 @@ namespace TFTDisplay {
     /**
      * Do initial set up for display. (Required before any drawing begins.)
      */
-    //% block
     function tftSetup() {
 
         // General Setup (for various display types)
