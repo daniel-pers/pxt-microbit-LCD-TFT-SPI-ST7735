@@ -13,82 +13,40 @@
  * see https://makecode.microbit.org/blocks/custom
  */
 
-// TFT display commands
-// Only the commands actually used are included here. See the ST7735R
-// data sheet for the full set of commands.
+/**
+ * TFT display commands
+ * Only the commands actually used are included here. See the ST7735R
+ * data sheet for the full set of commands.
+ */
 enum TftCom {
-    //% block="NOOP"
     NOOP = 0x00,
-
-    //% block="SWRESET"
     SWRESET = 0x01,
-
-    //% block="SLPOUT"
     SLPOUT = 0x11,
-
-    //% block="NORON"
     NORON = 0x13,
-
-    //% block="INVOFF"
     INVOFF = 0x20,
-
-    //% block="DISPON"
     DISPON = 0x29,
-
-    //% block="CASET"
     CASET = 0x2A,
-
-    //% block="RASET"
     RASET = 0x2B,
-
-    //% block="RAMWR"
     RAMWR = 0x2C,
-
-    //% block="MADCTL"
     MADCTL = 0x36,
-
-    //% block="COLMOD"
     COLMOD = 0x3A,
-    //% block="GMCTRP1"
-
-    //% block="FRMCTR1"
     FRMCTR1 = 0xB1,
-    //% block="FRMCTR2"
     FRMCTR2 = 0xB2,
-    //% block="FRMCTR3"
     FRMCTR3 = 0xB3,
-
-    //% block="INVCTR"
     INVCTR = 0xB4,
-    //% block="PWCTR1"
-
     PWCTR1 = 0xC0,
-    //% block="PWCTR2"
     PWCTR2 = 0xC1,
-    //% block="PWCTR3"
     PWCTR3 = 0xC2,
-    //% block="PWCTR4"
     PWCTR4 = 0xC3,
-    //% block="PWCTR5"
     PWCTR5 = 0xC4,
-    //% block="VMCTR1"
     VMCTR1 = 0xC5,
-
     GMCTRP1 = 0xE0,
-    //% block="GMCTRN1"
     GMCTRN1 = 0xE1,
-
-    //% block="DELAY"
     DELAY = 0xFFFF
 }
 
 /**
  * 显示TFT LCD液晶
- * API
- * setupDisplay()
- * drawPixel(x: number, y: number, colour: number)
- *
- *
  */
 //% weight=100 color=#0fbc11 icon="\uf108" block="TFT LCD液晶"
 namespace TFTDisplay {
@@ -99,7 +57,7 @@ namespace TFTDisplay {
         return 1
     }
 
-    /*
+    /**
      * The display width in ‘working coordinates’. These are pixel values * displayScale()
      */
     function displayWidth(): number {
@@ -123,21 +81,6 @@ namespace TFTDisplay {
         return adjusted;
     }
 
-    /**
-     * Draw a single pixel of a given colour
-     */
-    //% block="drawPixel |on x:%x|y:%y|colour:%colour"
-    //% weight=98
-    export function drawPixel(x: number, y: number, colour: number) {
-        if (outOfBounds(x, y)) {
-            return
-        }
-
-        setAddrWindow(x, y, x + 1, y + 1);
-        // send data (16 bits in two bytes)
-        tftCom(TftCom.RAMWR, [colour >> 8, colour])
-    }
-
     function outOfBounds(v1: number, v2 = 0, v3 = 0, v4 = 0): boolean {
         if (v1 < 0 || v1 > screen_x - 1) {
             return true
@@ -155,46 +98,9 @@ namespace TFTDisplay {
     }
 
     /**
-     * Draw a line of a given colour
-     */
-    //% block="drawLine |on x0:%x0|y0:%y0|x1:%x1|y1:%y1|colour:%colour"
-    //% weight=97
-    export function drawLine(x0: number, y0: number, x1: number, y1: number, colour: number) {
-        let xDelta = x1 - x0
-        let yDelta = y1 - y0
-
-        if (Math.abs(yDelta) > Math.abs(xDelta)) {
-            let ySteps = Math.abs(yDelta / displayScale())
-            let xIncrement = xDelta == 0 ? 0 : xDelta / ySteps
-            let yIncrement = yDelta > 0 ? displayScale() : -1 * displayScale()
-
-            let x = x0
-            let y = y0;
-            for (let steps = 0; steps <= ySteps; steps++) {
-                drawPixel(roundedPixel(x), roundedPixel(y), colour)
-                x = x + xIncrement
-                y = y + yIncrement
-            }
-            return
-        }
-
-        let xSteps = Math.abs(xDelta / displayScale())
-        let yIncrement = yDelta == 0 ? 0 : yDelta / xSteps;
-        let xIncrement = xDelta > 0 ? displayScale() : -1 * displayScale()
-
-        let y = y0;
-        let x = x0
-        for (let steps = 0; steps <= xSteps; steps++) {
-            drawPixel(roundedPixel(x), roundedPixel(y), colour)
-            y = y + yIncrement
-            x = x + xIncrement
-        }
-    }
-
-    /**
      * Set the address window
      */
-    function setAddrWindow(x0: number, y0: number, x1: number, y1: number) {
+    function setAddrWindow(x0: number, y0: number, x1: number, y1: number) : void {
 
         if (outOfBounds(x0, y0, x1, y1)) {
             return
@@ -210,52 +116,9 @@ namespace TFTDisplay {
 	}
 
     /**
-     * Fill a rectangle with a given colour
-     */
-    //% block="fillRect |on x:%x|y:%y|width:%width|height:%height|colour:%colour"
-    //% weight=96
-    export function fillRect(x: number, y: number, width: number, height: number, colour: number) {
-
-        if (outOfBounds(x, y)) {
-            return;
-        }
-
-        if ((x + width) > screen_x) {
-            width = screen_x - x;
-        }
-
-        if ((y + height) > screen_y) {
-            height = screen_y - y;
-        }
-
-        let hiColour = (colour >> 8) % 256;
-        let loColour = colour % 256;
-
-        setAddrWindow(x, y, x + width - 1, y + height - 1);
-
-        // we are going to manually implement the RAMWR command here because
-        // we have custom parameters. See comments in tftCom for details
-        // of what’s going on here.
-        pins.digitalWritePin(DigitalPin.P1, 0); // command/data = command
-        pins.digitalWritePin(DigitalPin.P16, 0); // select the TFT as SPI target
-        pins.spiWrite(TftCom.RAMWR);
-        pins.digitalWritePin(DigitalPin.P1, 1); // command/data = data
-
-        for (let indexY = height; indexY > 0; indexY--) {
-            for (let indexX = width; indexX > 0; indexX--) {
-                pins.spiWrite(hiColour)
-                pins.spiWrite(loColour)
-            }
-        }
-
-        pins.digitalWritePin(DigitalPin.P16, 1) // de-elect the TFT as SPI target
-        pins.digitalWritePin(DigitalPin.P1, 0) // command/data = command
-    }
-
-    /**
      * Write a command to the TFT display
      */
-    function tftCom(command: TftCom, params: Array<number>) {
+    function tftCom(command: TftCom, params: Array<number>) : void {
 
         // handle the pseudo ‘DELAY’ command - provides a delay in milliseconds
         if (command == TftCom.DELAY) {
@@ -289,45 +152,9 @@ namespace TFTDisplay {
     }
 
     /**
-     * Setup and clear screen ready for used
-     */
-    //% block="setupScreen |on x:%x|y:%y"
-    //% weight=99
-    export function setupScreen(x: number = 128, y: number = 160) {
-        screen_x = x
-        screen_y = y
-        pins.spiFrequency(4000000) // try a fast rate for serial bus
-
-        tftSetup()
-
-        fillRect(
-            0,
-            0,
-            x,
-            y,
-            0
-        )
-    }
-	
-	/**
-     * Clear screen
-     */
-    //% block="clearScreen"
-    //% weight=95
-    export function clearScreen() {
-        fillRect(
-            0,
-            0,
-            screen_x,
-            screen_y,
-            0
-        )
-    }
-
-    /**
      * Do initial set up for display. (Required before any drawing begins.)
      */
-    function tftSetup() {
+    function tftSetup() : void {
 
         // General Setup (for various display types)
 
@@ -392,5 +219,136 @@ namespace TFTDisplay {
 
         // 4: Main screen turn on
         tftCom(TftCom.DISPON, [])
+    }
+
+    /**
+     * Draw a line of a given colour
+     */
+    //% blockId="TFT_drawLine" block="drawLine on x0:%x0|y0:%y0|x1:%x1|y1:%y1|colour:%colour"
+    //% weight=97
+    export function drawLine(x0: number, y0: number, x1: number, y1: number, colour: number) : void {
+        let xDelta = x1 - x0
+        let yDelta = y1 - y0
+
+        if (Math.abs(yDelta) > Math.abs(xDelta)) {
+            let ySteps = Math.abs(yDelta / displayScale())
+            let xIncrement = xDelta == 0 ? 0 : xDelta / ySteps
+            let yIncrement = yDelta > 0 ? displayScale() : -1 * displayScale()
+
+            let x = x0
+            let y = y0;
+            for (let steps = 0; steps <= ySteps; steps++) {
+                drawPixel(roundedPixel(x), roundedPixel(y), colour)
+                x = x + xIncrement
+                y = y + yIncrement
+            }
+            return
+        }
+
+        let xSteps = Math.abs(xDelta / displayScale())
+        let yIncrement = yDelta == 0 ? 0 : yDelta / xSteps;
+        let xIncrement = xDelta > 0 ? displayScale() : -1 * displayScale()
+
+        let y = y0;
+        let x = x0
+        for (let steps = 0; steps <= xSteps; steps++) {
+            drawPixel(roundedPixel(x), roundedPixel(y), colour)
+            y = y + yIncrement
+            x = x + xIncrement
+        }
+    }
+
+    /**
+     * Draw a single pixel of a given colour
+     */
+    //% blockId="TFT_drawPixel" block="drawPixel on x:%x|y:%y|colour:%colour"
+    //% weight=98
+    export function drawPixel(x: number, y: number, colour: number) : void {
+        if (outOfBounds(x, y)) {
+            return
+        }
+
+        setAddrWindow(x, y, x + 1, y + 1);
+        // send data (16 bits in two bytes)
+        tftCom(TftCom.RAMWR, [colour >> 8, colour])
+    }
+
+    /**
+     * Fill a rectangle with a given colour
+     */
+    //% blockId="TFT_fillRect" block="fillRect on x:%x|y:%y|width:%width|height:%height|colour:%colour"
+    //% weight=96
+    export function fillRect(x: number, y: number, width: number, height: number, colour: number) : void {
+
+        if (outOfBounds(x, y)) {
+            return;
+        }
+
+        if ((x + width) > screen_x) {
+            width = screen_x - x;
+        }
+
+        if ((y + height) > screen_y) {
+            height = screen_y - y;
+        }
+
+        let hiColour = (colour >> 8) % 256;
+        let loColour = colour % 256;
+
+        setAddrWindow(x, y, x + width - 1, y + height - 1);
+
+        // we are going to manually implement the RAMWR command here because
+        // we have custom parameters. See comments in tftCom for details
+        // of what’s going on here.
+        pins.digitalWritePin(DigitalPin.P1, 0); // command/data = command
+        pins.digitalWritePin(DigitalPin.P16, 0); // select the TFT as SPI target
+        pins.spiWrite(TftCom.RAMWR);
+        pins.digitalWritePin(DigitalPin.P1, 1); // command/data = data
+
+        for (let indexY = height; indexY > 0; indexY--) {
+            for (let indexX = width; indexX > 0; indexX--) {
+                pins.spiWrite(hiColour)
+                pins.spiWrite(loColour)
+            }
+        }
+
+        pins.digitalWritePin(DigitalPin.P16, 1) // de-elect the TFT as SPI target
+        pins.digitalWritePin(DigitalPin.P1, 0) // command/data = command
+    }
+
+    /**
+     * Setup and clear screen ready for used
+     */
+    //% blockId="TFT_setupScreen" block="setupScreen on x:%x|y:%y"
+    //% weight=99
+    export function setupScreen(x: number = 128, y: number = 160) : void {
+        screen_x = x
+        screen_y = y
+        pins.spiFrequency(4000000) // try a fast rate for serial bus
+
+        tftSetup()
+
+        fillRect(
+            0,
+            0,
+            x,
+            y,
+            0
+        )
+    }
+	
+	/**
+     * Clear screen
+     */
+    //% blockId="TFT_clearScreen" block="clearScreen"
+    //% weight=95
+    export function clearScreen() : void {
+        fillRect(
+            0,
+            0,
+            screen_x,
+            screen_y,
+            0
+		)
     }
 }
