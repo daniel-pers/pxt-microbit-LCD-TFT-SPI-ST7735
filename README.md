@@ -18,7 +18,9 @@ and http://www.obliquely.org.uk/bbc-microbit-lunar-lander-project-part-1/
 
 ![Alt text](tft_lcd_code.PNG?raw=true "1.8 TFT LCD code picture")
 
-[sample hex download](microbit-tft-lcd.hex)
+[sample 1 hex download](microbit-tft-lcd.hex) 使用custom.ts
+
+[sample 2 hex download](microbit-tft-lcd.hex) 使用扩展包
 
 1.8寸TFT LCD液晶micro:bit显示效果: 
 
