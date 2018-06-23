@@ -18,9 +18,9 @@ and http://www.obliquely.org.uk/bbc-microbit-lunar-lander-project-part-1/
 
 ![Alt text](tft_lcd_code.PNG?raw=true "1.8 TFT LCD code picture")
 
-[sample 1 hex download](microbit-tft-lcd.hex) 使用custom.ts
+[sample 1 hex download](microbit-tft-lcd.hex) 使用custom.ts，点击链接后，页面上有3个按钮：“Raw”按钮，“Blame”按钮，“History”按钮，在“Raw”按钮上右键，另存为，进行下载。
 
-[sample 2 hex download](microbit-tft-lcd.hex) 使用扩展包
+[sample 2 hex download](microbit-microbit-tft-lcd2.hex) 使用扩展包，点击链接后，页面上有3个按钮：“Raw”按钮，“Blame”按钮，“History”按钮，在“Raw”按钮上右键，另存为，进行下载。
 
 1.8寸TFT LCD液晶micro:bit显示效果: 
 
@@ -28,11 +28,11 @@ and http://www.obliquely.org.uk/bbc-microbit-lunar-lander-project-part-1/
 
 [1.44寸TFT LCD液晶](1.44_TFT_LCD/) Adafruit 版代码：http://www.obliquely.org.uk/connecting-a-microbit-and-adafruit-1-44-display/
 
-[sample hex download](1.44_TFT_LCD/microbit-tft-lcd-02.hex)
+[sample hex download](1.44_TFT_LCD/microbit-tft-lcd-02.hex) 点击链接后，页面上有3个按钮：“Raw”按钮，“Blame”按钮，“History”按钮，在“Raw”按钮上右键，另存为，进行下载。
 
 [1.8寸TFT LCD液晶](1.8_TFT_LCD/) （该程序有部分bug，已在根目录下main.ts中修复）
 
-[sample hex download](1.8_TFT_LCD/microbit-microbit-tft-lcd-nice.hex)
+[sample hex download](1.8_TFT_LCD/microbit-microbit-tft-lcd-nice.hex) 点击链接后，页面上有3个按钮：“Raw”按钮，“Blame”按钮，“History”按钮，在“Raw”按钮上右键，另存为，进行下载。
 
 1.8寸TFT LCD液晶micro:bit接线: 
 
