@@ -1,5 +1,5 @@
 {
-    "name": "TFTLCD",
+    "name": "TFTDisplay",
     "version": "1.0.0",
     "description": "TFT LCD液晶micro:bit pxt扩展包",
     "license": "MIT",
