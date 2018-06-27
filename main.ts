@@ -45,6 +45,47 @@ enum TftCom {
     DELAY = 0xFFFF
 }
 
+enum COLOR {
+    //% block="黑"
+    Black = 0x0000,
+    //% block="藏青色"
+    Navy = 0x000F,
+    //% block="深绿色"
+    DarkGreen = 0x03E0,
+    //% block="深青色"
+    DarkCyan = 0x03EF,
+    //% block="紫色"
+    Maroon = 0x7800,
+    //% block="白"
+    Purple = 0x780F,
+    //% block="黄褐色"
+    Olive = 0x7BE0,
+    //% block="浅灰色"
+    LightGrey = 0xC618,
+    //% block="深灰色"
+    DarkGrey = 0x7BEF,
+    //% block="蓝色"
+    Blue = 0x001F,
+    //% block="绿色"
+    Green = 0x07E0,
+    //% block="青色"
+    Cyan = 0x07FF,
+    //% block="红色"
+    Red = 0xF800,
+    //% block="洋红色"
+    Magenta = 0xF81F,
+    //% block="黄色"
+    Yellow = 0xFFE0,
+    //% block="白色"
+    White = 0xFFFF,
+    //% block="橙色"
+    Orange = 0xFD20,
+    //% block="黄绿色"
+    GreenYellow = 0xAFE5,
+    //% block="粉红色"
+    Pink = 0xF81F
+};
+
 /**
  * 显示TFT LCD液晶
  */
@@ -336,10 +377,10 @@ namespace TFTDisplay {
             0
         )
     }
-	
-	/**
-     * Clear screen
-     */
+
+    /**
+    * Clear screen
+    */
     //% blockId="TFT_clearScreen" block="clearScreen"
     //% weight=95
     export function clearScreen() : void {
@@ -350,5 +391,16 @@ namespace TFTDisplay {
             screen_y,
             0
 		)
+    }
+
+    /**
+    * Get Color
+    */
+    //% blockId=Get_Color
+    //% blockGap=8
+    //% block="%color"
+    //% weight=94
+    export function Get_Color(color: COLOR): number{
+        return color;
     }
 }
