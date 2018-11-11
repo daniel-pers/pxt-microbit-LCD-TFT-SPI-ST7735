@@ -48,48 +48,48 @@ enum TftCom {
 enum COLOR {
     //% block="Black"
     Black = 0x0000,
-    //% block="藏青色"
+    //% block="Navy"
     Navy = 0x000F,
-    //% block="深绿色"
+    //% block="DarkGreen"
     DarkGreen = 0x03E0,
-    //% block="深青色"
+    //% block="DarkCyan"
     DarkCyan = 0x03EF,
-    //% block="紫色"
+    //% block="Maroon"
     Maroon = 0x7800,
     //% block="Purple"
     Purple = 0x780F,
-    //% block="黄褐色"
+    //% block="Olive"
     Olive = 0x7BE0,
-    //% block="浅灰色"
+    //% block="LightGrey"
     LightGrey = 0xC618,
-    //% block="深灰色"
+    //% block="DarkGrey"
     DarkGrey = 0x7BEF,
     //% block="Blue"
     Blue = 0x001F,
-    //% block="绿色"
+    //% block="Green"
     Green = 0x07E0,
-    //% block="青色"
+    //% block="Cyan"
     Cyan = 0x07FF,
     //% block="Red"
     Red = 0xF800,
-    //% block="洋红色"
+    //% block="Magenta"
     Magenta = 0xF81F,
     //% block="Yellow"
     Yellow = 0xFFE0,
-    //% block="白色"
+    //% block="White"
     White = 0xFFFF,
-    //% block="橙色"
+    //% block="Orange"
     Orange = 0xFD20,
     //% block="GreenYellow"
     GreenYellow = 0xAFE5,
-    //% block="粉红色"
+    //% block="Pink"
     Pink = 0xF81F
 };
 
 /**
  * TFT LCD
  */
-//% weight=100 color=#0fbc11 icon="\uf108" block="TFT LCD SPI"
+//% weight=100 color=#0fbc11 icon="\uf108" block="TFT LCD"
 namespace TFTDisplay {
     let screen_x = 0
     let screen_y = 0
