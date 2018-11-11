@@ -89,7 +89,7 @@ enum COLOR {
 /**
  * TFT LCD
  */
-//% weight=20 color=Navy icon="\uf108" block="TFT LCD SPI"
+//% weight=100 color=Navy icon="\uf108" block="TFT LCD SPI"
 namespace TFTDisplay {
     let screen_x = 0
     let screen_y = 0
