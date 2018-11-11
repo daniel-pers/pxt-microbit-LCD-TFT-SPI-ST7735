@@ -46,7 +46,7 @@ enum TftCom {
 }
 
 enum COLOR {
-    //% block="黑"
+    //% block="Black"
     Black = 0x0000,
     //% block="藏青色"
     Navy = 0x000F,
@@ -56,7 +56,7 @@ enum COLOR {
     DarkCyan = 0x03EF,
     //% block="紫色"
     Maroon = 0x7800,
-    //% block="白"
+    //% block="Purple"
     Purple = 0x780F,
     //% block="黄褐色"
     Olive = 0x7BE0,
@@ -64,23 +64,23 @@ enum COLOR {
     LightGrey = 0xC618,
     //% block="深灰色"
     DarkGrey = 0x7BEF,
-    //% block="蓝色"
+    //% block="Blue"
     Blue = 0x001F,
     //% block="绿色"
     Green = 0x07E0,
     //% block="青色"
     Cyan = 0x07FF,
-    //% block="红色"
+    //% block="Red"
     Red = 0xF800,
     //% block="洋红色"
     Magenta = 0xF81F,
-    //% block="黄色"
+    //% block="Yellow"
     Yellow = 0xFFE0,
     //% block="白色"
     White = 0xFFFF,
     //% block="橙色"
     Orange = 0xFD20,
-    //% block="黄绿色"
+    //% block="GreenYellow"
     GreenYellow = 0xAFE5,
     //% block="粉红色"
     Pink = 0xF81F
