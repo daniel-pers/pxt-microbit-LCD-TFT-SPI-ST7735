@@ -87,9 +87,9 @@ enum COLOR {
 };
 
 /**
- * 显示TFT LCD液晶
+ * TFT LCD
  */
-//% weight=100 color=#0fbc11 icon="\uf108" block="Afficheur TFT SPI"
+//% weight=100 color=#0fbc11 icon="\uf108" block="TFT LCD SPI"
 namespace TFTDisplay {
     let screen_x = 0
     let screen_y = 0
